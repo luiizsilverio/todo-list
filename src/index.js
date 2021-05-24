@@ -31,16 +31,14 @@ function App() {
   
   function getLists() {
     async function getListsAPI() {
-      //const data = await ListsService.list()
-      //console.log(data)
-      //setLists({data})
-      setLists( await ListsService.list() )
+      const data = await ListsService.list()
+      setLists(data)
+      console.log(data)
     }
     try {
       setRefreshing(true);
-      getListsAPI()
-      setRefreshing(false);
-    } catch {
+      getListsAPI()      
+    } finally {
       setRefreshing(false);
     }
   }
@@ -53,6 +51,7 @@ function App() {
     <>            
         <ScrollView 
           contentContainerStyle={styles.container}
+          horizontal={true} 
           refreshControl={
             <RefreshControl 
               refreshing={refreshing}
@@ -60,7 +59,7 @@ function App() {
             />        
           }
         >
-        <ListsView lists={lists} />        
+          <ListsView lists={lists} />        
         </ScrollView>  
         <StatusBar />      
     </>
@@ -70,9 +69,10 @@ function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,    
-    justifyContent: 'center',
     alignItems: 'center',    
-    backgroundColor: '#F5FCFF'
+    justifyContent: 'center',
+    backgroundColor: '#F5FCFF',
+    marginLeft: 4    
   }
 });
 

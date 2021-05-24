@@ -5,7 +5,7 @@ import SimpleList from '../components/SimpleList'
 
 function ListsView (props) {
     const {lists} = props    
-    console.log('ListView', lists)
+    
     return (
         <View style={{flex: 1}}>
             <FlatList
