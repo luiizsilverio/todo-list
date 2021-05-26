@@ -4,18 +4,28 @@ import {
     Text, 
     Image, 
     StyleSheet, 
-    useWindowDimensions    
+    useWindowDimensions,
+    TouchableHighlight  
  } from 'react-native'
 
 const logo = require('../logo.png')
 
 function SimpleList(props) {
-    const {list} = props    
+    const list = props.list ? props.list : {}
+    const onRemove = props.onRemove ? props.onRemove : (lista = list) => {}
     const picture = list.picture ? {uri: list.picture} : logo 
     const largura = useWindowDimensions().width / 3 - 20
-
+    
     return (
-        <View style={[styles.view, {width: largura + 12}]}>   
+        <View 
+            style={[styles.view, {width: largura + 12}]} >
+            <TouchableHighlight 
+                onPress={() => onRemove(list)}
+                style={styles.btnClose}
+            >
+                <Text style={styles.text}>X</Text>
+            </TouchableHighlight>
+            
             <Image 
                 source={ picture } 
                 style={{width: largura, height: largura}}
@@ -33,8 +43,22 @@ const styles = StyleSheet.create({
         marginTop: 8,
         borderWidth: 1,
         borderColor: '#aaa',
-        padding: 5
-    }    
+        padding: 5,
+        position: 'relative'
+    },
+    btnClose: {
+        position: 'absolute', 
+        top: 0, 
+        right: 0,
+        zIndex: 2        
+    },
+    text: {
+        fontWeight: 'bold',
+        backgroundColor: 'darkred',
+        color: 'white',
+        paddingHorizontal: 5,
+        paddingVertical: 2
+    }
 });
 
 export default SimpleList

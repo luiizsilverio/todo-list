@@ -4,7 +4,8 @@ import {
   ScrollView, 
   StatusBar, 
   StyleSheet,
-  RefreshControl
+  RefreshControl,
+  Alert
 } from 'react-native'
 
 import ListsView from './views/ListsView'
@@ -32,8 +33,7 @@ function App() {
   function getLists() {
     async function getListsAPI() {
       const data = await ListsService.list()
-      setLists(data)
-      console.log(data)
+      setLists(data)      
     }
     try {
       setRefreshing(true);
@@ -47,6 +47,34 @@ function App() {
     getLists()
   }, [])
   
+  function removeList(listToRemove) {
+    function confirmaRemocao() {
+      const id = listToRemove.id
+      const newList = lists.filter(list => list.id !== id)        
+      setLists(newList)
+      ListsService.delete(id)         
+    }
+
+    if (!listToRemove) {
+      return false
+    }        
+
+    Alert.alert(
+      listToRemove.title,
+      'Confirma exclusão da lista?',
+      [
+        { 
+          text: "Confirma", 
+          onPress: () => confirmaRemocao()
+        },
+        {
+          text: "Cancela",
+          onPress: () => {}
+        },
+      ]
+    )    
+  }
+
   return (
     <>            
         <ScrollView 
@@ -59,7 +87,7 @@ function App() {
             />        
           }
         >
-          <ListsView lists={lists} />        
+          <ListsView lists={lists} onRemove={removeList} />        
         </ScrollView>  
         <StatusBar />      
     </>
