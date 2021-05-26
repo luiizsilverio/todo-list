@@ -10,6 +10,7 @@ import {
 
 import ListsView from './views/ListsView'
 import { ListsService } from './services/ListsService'
+import List from './components/List'
 
 const icon = {uri: 'https://png.pngtree.com/png-clipart/20190515/original/pngtree-instagram-black-amp;-white-icon-png-image_3547797.jpg'};
 const logo = require('../images/logo.png')
@@ -76,19 +77,26 @@ function App() {
   }
 
   return (
-    <>            
+    <>      
+      <View style={styles.container}>
+
+      <List />
+      {/*
         <ScrollView 
-          contentContainerStyle={styles.container}
           horizontal={true} 
           refreshControl={
             <RefreshControl 
-              refreshing={refreshing}
-              onRefresh={getLists}
+            refreshing={refreshing}
+            onRefresh={getLists}
             />        
           }
-        >
+          >
           <ListsView lists={lists} onRemove={removeList} />        
-        </ScrollView>  
+        </ScrollView>
+      */}
+
+      </View>
+
         <StatusBar />      
     </>
   );
