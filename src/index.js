@@ -97,7 +97,6 @@ function App() {
     const newLists = [...lists, newList]
     setLists(newLists)
     selectList(newList)
-    console.log(newList)
     return newLists
   }
 

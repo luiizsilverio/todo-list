@@ -1,0 +1,62 @@
+{
+  "lists": [
+    {
+      "id": 1,
+      "title": "Mercado",
+      "picture": "https://img.olx.com.br/thumbs256x256/15/157163746493769.jpg",
+      "description": "Lista de Compras",
+      "items": []
+    },
+    {
+      "id": 2,
+      "title": "Estudo",
+      "picture": "https://pbs.twimg.com/profile_images/667411105753378816/zaWp36aA_400x400.jpg",
+      "description": "Tudo o que precisa estudar",
+      "items": []
+    },
+    {
+      "id": 3,
+      "title": "Trabalho",
+      "picture": "https://construtoralumiar.com.br/images/home-office-1.jpg",
+      "description": "Lista de tarefas",
+      "items": []
+    },
+    {
+      "id": 4,
+      "title": "Filmes",
+      "picture": "https://s3.amazonaws.com/media.muckrack.com/profile/images/11823376/wonder-woman-wide-poster-.jpg",
+      "description": "Filmes e séries que desejo assistir",
+      "items": []
+    },
+    {
+      "title": "Pets",
+      "description": "Cuidados com o Thor e o periquito piupiu",
+      "picture": "https://skycms.s3.amazonaws.com/images/5495100/cachorro-card-1.png",
+      "items": [
+        {
+          "description": "raçao do Thor",
+          "done": false,
+          "id": "Mon May 31 2021 16:36:31 GMT+0000 (GMT)"
+        },
+        {
+          "description": "painço do piupiu",
+          "done": false,
+          "id": "Mon May 31 2021 16:36:37 GMT+0000 (GMT)"
+        },
+        {
+          "description": "veterinário quinta as 19:00",
+          "done": false,
+          "id": "Mon May 31 2021 16:36:56 GMT+0000 (GMT)"
+        }
+      ],
+      "id": 7
+    },
+    {
+      "title": "Nova Lista",
+      "description": "",
+      "picture": "",
+      "items": [],
+      "id": 8
+    }
+  ]
+}

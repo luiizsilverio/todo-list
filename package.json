@@ -6,11 +6,13 @@
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "start": "react-native start",
+    "server": "json-server -w -p 3333 ./server.json",
     "test": "jest",
     "lint": "eslint ."
   },
   "dependencies": {
     "@react-native-community/toolbar-android": "^0.1.0-rc.2",
+    "axios": "^0.21.1",
     "react": "17.0.1",
     "react-native": "0.64.1",
     "react-native-progress": "^4.1.2"
@@ -22,6 +24,7 @@
     "babel-jest": "^26.6.3",
     "eslint": "7.14.0",
     "jest": "^26.6.3",
+    "json-server": "^0.16.3",
     "metro-react-native-babel-preset": "^0.64.0",
     "react-test-renderer": "17.0.1"
   },

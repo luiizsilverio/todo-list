@@ -1,28 +1,21 @@
-const url = 'http://192.168.253.1:3002/api/react-native'
+import { api } from './api'
 
 export const ApiService = {
     get(endpoint) {
-        return fetch(`${url}/${endpoint}`)
-            .then(response => response.json())
+        return api.get(`/${endpoint}`)
+            .then(response => response.data)
+            .catch(error => console.error(error))
     },
     post(endpoint, data) {
-        return fetch(`${url}/${endpoint}`, {
-            method: 'POST',
-            body: JSON.stringify(data)
-        })
-            .then(response => response.json())
+        return api.post(`/${endpoint}`, data)
+            .then(response => response.data)                
     },
     put(endpoint, data) {
-        return fetch(`${url}/${endpoint}?id=${data.id}`, {
-            method: 'PUT',
-            body: JSON.stringify(data)
-        })
-            .then(response => response.json())
+        return api.put(`/${endpoint}/${data.id}`, data)
+            .then(response => response.data)
     },
     delete(endpoint, id) {
-        return fetch(`${url}/${endpoint}?id=${id}`, {
-            method: 'DELETE',            
-        }) 
-            .then(response => response.json())
+        return api.delete(`/${endpoint}/${id}`)
+            .then(response => response.data)
     }
 }

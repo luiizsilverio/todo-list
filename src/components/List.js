@@ -134,19 +134,20 @@ function List (props) {
                 </View>            
             </SafeAreaView>
 
-            <ScrollView style={{flex: 1, margin: 5}}>
-                <FlatList 
-                    data={list.items}
-                    horizontal={false}
-                    keyExtractor={(item) => item.id}
-                    renderItem={({item}) => (
-                        <ListItem item={item}
-                            onUpdate={updateListItem}
-                            onRemove={removeListItem}
-                        />
-                    )}
-                />
-            </ScrollView>
+            
+            <FlatList 
+                style={{flex: 1, margin: 5}}
+                data={list.items}
+                horizontal={false}
+                keyExtractor={(item) => item.id}
+                renderItem={({item}) => (
+                    <ListItem item={item}
+                        onUpdate={updateListItem}
+                        onRemove={removeListItem}
+                    />
+                )}
+            />
+            
 
             <Button title="Salvar"
                 onPress={() => onActionDone(list)}
