@@ -6,6 +6,7 @@ import SimpleList from '../components/SimpleList'
 function ListsView (props) {
     const {lists} = props
     const onRemove = props.onRemove ? props.onRemove : (lista = list) => {}    
+    const onSelect = props.onSelect ? props.onSelect : () => {} 
     
     return (
         <View style={{flex: 1}}>
@@ -14,7 +15,11 @@ function ListsView (props) {
                 keyExtractor={(item) => item.id}
                 numColumns={3}
                 renderItem={({item}) => (
-                    <SimpleList list={item} onRemove={onRemove} />                      
+                    <SimpleList 
+                        list={item} 
+                        onRemove={onRemove} 
+                        onSelect={() => onSelect(item)}
+                    />  
                 )}
             />
         </View>

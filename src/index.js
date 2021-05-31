@@ -5,7 +5,9 @@ import {
   StatusBar, 
   StyleSheet,
   RefreshControl,
-  Alert
+  Alert,
+  Button,
+  Modal
 } from 'react-native'
 
 import ListsView from './views/ListsView'
@@ -24,8 +26,11 @@ const myList = Array(10)
 
 function App() {
   const [lists, setLists] = useState([])
-  const [refreshing, setRefreshing] = React.useState(false);
-
+  const [refreshing, setRefreshing] = useState(false)
+  const [modalVisible, setModalVisible] = useState(false)
+  const [selectedList, setSelectedList] = useState({})
+  
+  
   useEffect(() => {
     StatusBar.setBackgroundColor('lightblue', true)
     StatusBar.setBarStyle('dark-content')    
@@ -76,12 +81,48 @@ function App() {
     )    
   }
 
+  function selectList(selList) {
+    setSelectedList(selList)
+    setModalVisible(true)
+  }
+
+  async function createList() {
+    const newList = await ListsService.create({
+      title: 'Nova Lista',
+      description: '', 
+      picture: '',
+      items: []
+    })
+
+    const newLists = [...lists, newList]
+    setLists(newLists)
+    selectList(newList)
+    console.log(newList)
+    return newLists
+  }
+
+  async function updateList(newList) {
+    const listas = [...lists]
+    const id = listas.findIndex(list => list.id === newList.id)
+
+    listas[id] = newList
+    setLists(listas)
+    setSelectedList({})
+    setModalVisible(false)
+    
+    await ListsService.update(listas[id])
+  }
+
   return (
     <>      
       <View style={styles.container}>
+        <Button 
+          title="+ Nova Lista " 
+          style={{flex: 1}}
+          color="green"
+          onPress={createList}
+        />
 
-      <List />
-      {/*
         <ScrollView 
           horizontal={true} 
           refreshControl={
@@ -91,13 +132,22 @@ function App() {
             />        
           }
           >
-          <ListsView lists={lists} onRemove={removeList} />        
-        </ScrollView>
-      */}
-
+          <ListsView 
+            lists={lists} 
+            onRemove={removeList}     
+            onSelect={selectList}                             
+          />
+        </ScrollView>    
       </View>
 
-        <StatusBar />      
+      <Modal
+          animationType="slide"
+          transparent={false}
+          visible={modalVisible}
+      >
+        <List list={selectedList} onActionDone={updateList} />
+      </Modal>
+      <StatusBar />      
     </>
   );
 };

@@ -8,14 +8,14 @@ export const ApiService = {
     post(endpoint, data) {
         return fetch(`${url}/${endpoint}`, {
             method: 'POST',
-            body: JSON.stringify
+            body: JSON.stringify(data)
         })
             .then(response => response.json())
     },
     put(endpoint, data) {
         return fetch(`${url}/${endpoint}?id=${data.id}`, {
             method: 'PUT',
-            body: JSON.stringify
+            body: JSON.stringify(data)
         })
             .then(response => response.json())
     },
